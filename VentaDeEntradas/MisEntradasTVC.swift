@@ -1,18 +1,17 @@
 
 import UIKit
 
-class MisEntradasTVC: UITableViewController {
+var entradas = [Entrada]()
 
-    var entradas = [Entrada]()
+class MisEntradasTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        entradas.append(Entrada(name: "Viña Rock", date: "4/05/2019", city: "Madrid"))
-        tableView.rowHeight = 100
+        
+        tableView.rowHeight = 80
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
 
@@ -28,6 +27,8 @@ class MisEntradasTVC: UITableViewController {
     
         return cell
     }
-
-
+    
+    static func SaveTicket(name: String, city: String, date: String){
+        entradas.append(Entrada(name: name, date: date, city: city))
+    }
 }

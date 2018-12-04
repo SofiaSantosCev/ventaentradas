@@ -1,71 +1,54 @@
 
 import UIKit
 
-
- struct cellData {
-    var opened = Bool()
-    var sectionData = String()
- }
-
 class EventosTVC: UITableViewController {
 
-    var eventos = [Evento]()
-    var tableViewData = [cellData]()
+    var evento = [Evento]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewData = [cellData(opened: false, sectionData: "hola"),
-                         cellData(opened: false, sectionData: "hola"),
-                         cellData(opened: false, sectionData: "hola"),
-                         cellData(opened: false, sectionData: "hola")]
         tableView.rowHeight = 80
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2010", city: "Madrid", price: 60))
+        evento.append(Evento(name: "Primavera Sound", date: "20/01/2010", city: "Madrid", price: 50))
+        evento.append(Evento(name: "IntroMusic", date: "20/01/2000", city: "Valladolid", price: 35))
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2008", city: "Madrid", price: 40))
         
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-       
-        return tableViewData.count
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-         if tableViewData[section].opened == true
-         {
-            return 2
-         } else {
-            return 1
-         }
+         return evento.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! EventosTVCell
+        cell.name.text = evento[indexPath.row].name
+        cell.city.text = evento[indexPath.row].city
+        cell.date.text = evento[indexPath.row].date
+        cell.price = evento[indexPath.row].price
         
-         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! EventosTVCell
-            
-            return cell
-         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath) as! EventosTVCell
-            cell.textLabel?.text = tableViewData[indexPath.section].sectionData
-            return cell
-         }
+        return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-     {
-         if indexPath.row == 0 {
-             if tableViewData[indexPath.section].opened == true {
-             tableViewData[indexPath.section].opened = false
-             let sections = IndexSet.init(integer: indexPath.section)
-             tableView.reloadSections(sections, with: .none)
-            } else {
-             tableViewData[indexPath.section].opened = true
-             let sections = IndexSet.init(integer: indexPath.section)
-             tableView.reloadSections(sections, with: .none)
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is CompraVC {
+            let destination = segue.destination as! CompraVC
+            let evento = sender as! EventosTVCell
+            
+            destination.texto = evento.name.text!
+            destination.price = evento.price
+            destination.city = evento.city.text!
+            destination.date = evento.date.text!
         }
     }
- 
+    
+    
+    
+
 
 
 }
