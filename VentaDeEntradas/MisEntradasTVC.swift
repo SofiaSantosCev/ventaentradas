@@ -24,11 +24,24 @@ class MisEntradasTVC: UITableViewController {
         cell.name.text = entradas[indexPath.row].name
         cell.city.text = entradas[indexPath.row].city
         cell.date.text = entradas[indexPath.row].date
+        cell.imageEntrada?.image = entradas[indexPath.row].image
     
         return cell
     }
     
-    static func SaveTicket(name: String, city: String, date: String){
-        entradas.append(Entrada(name: name, date: date, city: city))
+    static func SaveTicket(name: String, city: String, date: String, image: UIImage){
+        entradas.append(Entrada(name: name, date: date, city: city, image: image))
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is DetailVC {
+            let destination = segue.destination as! DetailVC
+            let entrada = sender as! EntradasTVCell
+            
+            destination.textCode = entrada.code
+            destination.textName = entrada.name.text!
+            destination.imagePrueba = (entrada.imageEntrada?.image!)!
+            print("Segue realizado con éxito")
+        }
     }
 }

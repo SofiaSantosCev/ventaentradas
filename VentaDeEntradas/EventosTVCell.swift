@@ -9,6 +9,9 @@ class EventosTVCell: UITableViewCell {
     
     @IBOutlet weak var date: UILabel!
     
+  
+    @IBOutlet weak var imageEvent: UIImageView?
+    
     var price: Int = 0
     
 }

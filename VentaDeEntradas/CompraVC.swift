@@ -9,9 +9,11 @@ class CompraVC: UIViewController {
     @IBOutlet weak var stepper: UIStepper!
     
     var price: Int = 0
-    var texto: String = ""
+    var text: String = ""
     var date: String = ""
     var city: String = ""
+    var code: String = ""
+    var image: UIImage = #imageLiteral(resourceName: "vina")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,7 @@ class CompraVC: UIViewController {
         stepper.wraps = true
         stepper.autorepeat = true
         stepper.maximumValue = 10
-        EventName.text = texto
+        EventName.text = text
     }
 
     @IBAction func stepper(_ sender: UIStepper) {
@@ -28,7 +30,8 @@ class CompraVC: UIViewController {
     }
     
     @IBAction func button(_ sender: Any) {
-        
-        MisEntradasTVC.SaveTicket(name: texto, city: city, date: date)
+        MisEntradasTVC.SaveTicket(name: text, city: city, date: date, image: image)
+        print("Entrada comprada")
+        print(entradas.count)
     }
 }
