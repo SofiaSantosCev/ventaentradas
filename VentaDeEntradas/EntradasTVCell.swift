@@ -10,7 +10,7 @@ class EntradasTVCell: UITableViewCell {
     
     @IBOutlet weak var date: UILabel!
     
-    var code: String = ""
+    var code: Int = Int(arc4random_uniform(10000))
     
     @IBOutlet weak var imageEntrada: UIImageView?
 }

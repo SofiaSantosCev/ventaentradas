@@ -2,19 +2,19 @@
 import UIKit
 
 class DetailVC: UIViewController {
-  //esta clase no
+    
     @IBOutlet weak var code: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var imageDetail: UIImageView!
     
-    var textCode: String = ""
+    var textCode = Int(arc4random_uniform(10000))
     var textName: String = ""
     var imagePrueba: UIImage = #imageLiteral(resourceName: "vina")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        code.text = textCode
+        code.text = String(textCode)
         name.text = textName
         imageDetail.image = imagePrueba
     }

@@ -7,17 +7,17 @@ class EventosTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         tableView.rowHeight = 80
-        evento.append(Evento(name: "ViñaRock", date: "20/01/2010", city: "Madrid", price: 60, code: "AA27CC", image: #imageLiteral(resourceName: "vina")))
-        evento.append(Evento(name: "Primavera Sound", date: "20/01/2010", city: "Madrid", price: 50, code: "BB28DD", image: #imageLiteral(resourceName: "primavera") ))
-        evento.append(Evento(name: "IntroMusic", date: "20/01/2000", city: "Valladolid", price: 35, code: "XX98HH", image: #imageLiteral(resourceName: "intromusic")))
-        evento.append(Evento(name: "ViñaRock", date: "20/01/2008", city: "Madrid", price: 40, code: "OO76HH", image: #imageLiteral(resourceName: "vina")))
-        evento.append(Evento(name: "ViñaRock", date: "20/01/2010", city: "Madrid", price: 60, code: "AA29KC", image: #imageLiteral(resourceName: "vina")))
-        evento.append(Evento(name: "Primavera Sound", date: "20/01/2010", city: "Madrid", price: 50, code: "KK28DD", image: #imageLiteral(resourceName: "primavera") ))
-        evento.append(Evento(name: "IntroMusic", date: "20/01/2000", city: "Valladolid", price: 35, code: "XX9CKH", image: #imageLiteral(resourceName: "intromusic")))
-        evento.append(Evento(name: "ViñaRock", date: "20/01/2008", city: "Madrid", price: 40, code: "OO7PPH", image: #imageLiteral(resourceName: "vina")))
         
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2010", city: "Madrid", price: 60, image: #imageLiteral(resourceName: "vina")))
+        evento.append(Evento(name: "Primavera Sound", date: "20/01/2010", city: "Madrid", price: 50, image: #imageLiteral(resourceName: "primavera") ))
+        evento.append(Evento(name: "IntroMusic", date: "20/01/2000", city: "Valladolid", price: 35, image: #imageLiteral(resourceName: "intromusic")))
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2008", city: "Madrid", price: 40, image: #imageLiteral(resourceName: "vina")))
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2010", city: "Madrid", price: 60, image: #imageLiteral(resourceName: "vina")))
+        evento.append(Evento(name: "Primavera Sound", date: "20/01/2010", city: "Madrid", price: 50, image: #imageLiteral(resourceName: "primavera") ))
+        evento.append(Evento(name: "IntroMusic", date: "20/01/2000", city: "Valladolid", price: 35, image: #imageLiteral(resourceName: "intromusic")))
+        evento.append(Evento(name: "ViñaRock", date: "20/01/2008", city: "Madrid", price: 40, image: #imageLiteral(resourceName: "vina")))
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,7 +35,6 @@ class EventosTVC: UITableViewController {
         cell.date.text = evento[indexPath.row].date
         cell.price = evento[indexPath.row].price
         cell.imageEvent?.image = evento[indexPath.row].image
-        
         return cell
     }
     
@@ -48,13 +47,8 @@ class EventosTVC: UITableViewController {
             destination.price = evento.price
             destination.city = evento.city.text!
             destination.date = evento.date.text!
+            destination.image = (evento.imageEvent?.image)!
             
         }
     }
-    
-    
-    
-
-
-
 }

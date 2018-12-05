@@ -12,7 +12,6 @@ class CompraVC: UIViewController {
     var text: String = ""
     var date: String = ""
     var city: String = ""
-    var code: String = ""
     var image: UIImage = #imageLiteral(resourceName: "vina")
     
     override func viewDidLoad() {
@@ -22,16 +21,19 @@ class CompraVC: UIViewController {
         stepper.autorepeat = true
         stepper.maximumValue = 10
         EventName.text = text
+        
     }
-
+    
     @IBAction func stepper(_ sender: UIStepper) {
         numEntradas.text = Int(sender.value).description
         numPrecio.text = String(Int(sender.value) * price)
     }
     
     @IBAction func button(_ sender: Any) {
-        MisEntradasTVC.SaveTicket(name: text, city: city, date: date, image: image)
-        print("Entrada comprada")
-        print(entradas.count)
+        let newRandomCode = Int(arc4random_uniform(10000))
+        MisEntradasTVC.SaveTicket(name: text, city: city, date: date, image: image, code: newRandomCode)
+        MisEntradasTVC.saveData()
     }
+    
+    
 }
