@@ -13,7 +13,7 @@ class CompraVC: UIViewController {
     var date: String?
     var city: String?
     var image: UIImage?
-    
+    var entradasNum:Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,13 +24,19 @@ class CompraVC: UIViewController {
     }
     
     @IBAction func stepper(_ sender: UIStepper) {
-        numEntradas.text = Int(sender.value).description
-        numPrecio.text = String(Int(sender.value) * price)
+        entradasNum = Int(sender.value)
+        numEntradas.text = (entradasNum?.description)! + " entradas"
+        numPrecio.text = String(Int(sender.value) * price) + " €"
     }
     
     @IBAction func button(_ sender: Any) {
-        MisEntradasTVC.SaveTicket(name: text!, city: city!, date: date!, image: image!)
-        saveData()
+        if(entradasNum == 0){
+            print("Tienes que comprar almenos una entrada")
+        } else {
+            MisEntradasTVC.SaveTicket(name: text!, city: city!, date: date!, image: image!)
+            saveData()
+        }
     }
-    
 }
+    
+

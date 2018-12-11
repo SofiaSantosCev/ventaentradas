@@ -16,10 +16,9 @@ class MisEntradasTVC: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = 80
-        if(!entradas.isEmpty){
            uploadData()
-        }
     }
+
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
