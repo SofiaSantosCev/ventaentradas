@@ -3,13 +3,22 @@ import UIKit
 
 var entradas = [Entrada]()
 
+func saveData(){
+    let userDefaults = UserDefaults.standard
+    let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: entradas)
+    userDefaults.set(encodedData, forKey: "mis entradas")
+    userDefaults.synchronize()
+}
+
 class MisEntradasTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = 80
-        uploadData()
+        if(!entradas.isEmpty){
+           uploadData()
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,8 +44,8 @@ class MisEntradasTVC: UITableViewController {
         return cell
     }
     
-    static func SaveTicket(name: String, city: String, date: String, image: UIImage, code: Int){
-        entradas.append(Entrada(name: name, date: date, city: city, image: image, code: code))
+    static func SaveTicket(name: String, city: String, date: String, image: UIImage){
+        entradas.append(Entrada(name: name, date: date, city: city, image: image))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,19 +53,12 @@ class MisEntradasTVC: UITableViewController {
             let destination = segue.destination as! DetailVC
             let entrada = sender as! EntradasTVCell
             
-            destination.textCode = entrada.code 
+            destination.textCode = entrada.code
             destination.textName = entrada.name.text!
             destination.imagePrueba = (entrada.imageEntrada?.image!)!
         }
     }
     
-    /*static func saveData(){
-        let userDefaults = UserDefaults.standard
-        let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: entradas)
-        userDefaults.set(encodedData, forKey: "mis entradas")
-        userDefaults.synchronize()
-    }
-    */
     func uploadData() {
         let userDefaults = UserDefaults.standard
         if(userDefaults.object(forKey: "mis entradas") != nil){

@@ -7,14 +7,13 @@ class DetailVC: UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var imageDetail: UIImageView!
     
-    var textCode = Int(arc4random_uniform(10000))
-    var textName: String = ""
-    var imagePrueba: UIImage = #imageLiteral(resourceName: "vina")
+    var textCode:Int?
+    var textName: String?
+    var imagePrueba: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        code.text = String(textCode)
+        code.text = String(textCode!)
         name.text = textName
         imageDetail.image = imagePrueba
     }
