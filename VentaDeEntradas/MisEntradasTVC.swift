@@ -16,7 +16,7 @@ class MisEntradasTVC: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = 80
-           uploadData()
+        uploadData()
     }
 
 

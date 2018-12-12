@@ -17,7 +17,7 @@ class Entrada: NSObject, NSCoding
         self.date = date
         self.city = city
         self.image = image
-        self.code = Int(arc4random_uniform(10000))
+        self.code = Int(arc4random_uniform(1000000000))
     }
     
     func encode(with aCoder: NSCoder) {
