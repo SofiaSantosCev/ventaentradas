@@ -12,6 +12,7 @@ func saveData(){
 
 class MisEntradasTVC: UITableViewController {
     
+    //Este método se ejecuta al iniciar la aplicación. Recarga los datos almacenados en userDefaults.
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,15 +20,15 @@ class MisEntradasTVC: UITableViewController {
         uploadData()
     }
 
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    //Asigna el tamaño de la lista al tamaño del array entradas
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entradas.count
     }
-    
+    //Este método se ejecuta cada ves que se muestra la pantalla.
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
@@ -43,10 +44,12 @@ class MisEntradasTVC: UITableViewController {
         return cell
     }
     
+    //Crea un nuevo objeto entrada y lo añade al array de entradas.
     static func SaveTicket(name: String, city: String, date: String, image: UIImage){
         entradas.append(Entrada(name: name, date: date, city: city, image: image))
     }
     
+    //Se asigna los datos de la entrada clicada para enviarselos a la clase DetailVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is DetailVC {
             let destination = segue.destination as! DetailVC
@@ -58,6 +61,9 @@ class MisEntradasTVC: UITableViewController {
         }
     }
     
+    /*
+     Este método recarga los datos guardados en userDefaults.
+     */
     func uploadData() {
         let userDefaults = UserDefaults.standard
         if(userDefaults.object(forKey: "mis entradas") != nil){

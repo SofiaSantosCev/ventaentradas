@@ -19,14 +19,9 @@ class Entrada: NSObject, NSCoding
         self.image = image
         self.code = Int(arc4random_uniform(1000000000))
     }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(image, forKey: "image")
-        aCoder.encode(city, forKey: "city")
-        aCoder.encode(name, forKey: "name")
-        aCoder.encode(code, forKey: "code")
-        aCoder.encode(date, forKey: "date")
-    }
+    /*
+     Este método sobreescribe el init 
+     */
     
     required convenience init(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObject(forKey: "name") as! String
@@ -35,6 +30,18 @@ class Entrada: NSObject, NSCoding
         let city = aDecoder.decodeObject(forKey: "city") as! String
         
         self.init(name: name, date: date, city: city, image: image)
+    }
+    
+    /*
+     Este metodo asigna una clave a cada dato para guardarlo
+     */
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(image, forKey: "image")
+        aCoder.encode(city, forKey: "city")
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(code, forKey: "code")
+        aCoder.encode(date, forKey: "date")
     }
     
 }

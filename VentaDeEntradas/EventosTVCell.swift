@@ -13,5 +13,4 @@ class EventosTVCell: UITableViewCell {
     
     var price: Int = 0
     
-    
 }
