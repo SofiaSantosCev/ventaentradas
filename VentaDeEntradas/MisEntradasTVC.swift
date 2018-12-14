@@ -3,6 +3,7 @@ import UIKit
 
 var entradas = [Entrada]()
 
+//Método que guarda los datos en userDefaults. Este método se llama al comprar una entrada.
 func saveData(){
     let userDefaults = UserDefaults.standard
     let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: entradas)
@@ -28,6 +29,7 @@ class MisEntradasTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return entradas.count
     }
+    
     //Este método se ejecuta cada ves que se muestra la pantalla.
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -40,13 +42,14 @@ class MisEntradasTVC: UITableViewController {
         cell.date.text = entradas[indexPath.row].date
         cell.imageEntrada?.image = entradas[indexPath.row].image
         cell.code = entradas[indexPath.row].code
-    
+        cell.cantidad = entradas[indexPath.row].cantidad
+        
         return cell
     }
     
     //Crea un nuevo objeto entrada y lo añade al array de entradas.
-    static func SaveTicket(name: String, city: String, date: String, image: UIImage){
-        entradas.append(Entrada(name: name, date: date, city: city, image: image))
+    static func SaveTicket(name: String, city: String, date: String, image: UIImage, cantidad: String){
+        entradas.append(Entrada(name: name, date: date, city: city, image: image, cantidad: cantidad))
     }
     
     //Se asigna los datos de la entrada clicada para enviarselos a la clase DetailVC
@@ -58,6 +61,7 @@ class MisEntradasTVC: UITableViewController {
             destination.textCode = entrada.code
             destination.textName = entrada.name.text!
             destination.imagePrueba = (entrada.imageEntrada?.image!)!
+            destination.numerodeentradas = entrada.cantidad
         }
     }
     

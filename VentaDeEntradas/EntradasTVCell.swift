@@ -12,5 +12,7 @@ class EntradasTVCell: UITableViewCell {
     
     var code: Int = Int(arc4random_uniform(1000000000))
     
+    var cantidad: String?
+    
     @IBOutlet weak var imageEntrada: UIImageView?
 }

@@ -10,15 +10,18 @@ class DetailVC: UIViewController {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var entradas: UILabel!
     
-    var textCode:Int?
+    var textCode: Int?
     var textName: String?
     var imagePrueba: UIImage?
+    var numerodeentradas: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         code.text = String(textCode!)
         name.text = textName
         imageDetail.image = imagePrueba
+        entradas.text = numerodeentradas!
+        
     }
 }
 

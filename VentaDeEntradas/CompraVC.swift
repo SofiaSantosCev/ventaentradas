@@ -25,6 +25,8 @@ class CompraVC: UIViewController {
         EventName.text = textname
         DATE.text = date
         ciudad.text = city
+        numEntradas.text = String(entradasNum)
+        
     }
     
     /*
@@ -41,11 +43,12 @@ class CompraVC: UIViewController {
      */
     @IBAction func button(_ sender: Any) {
         if(entradasNum == 0){
-            let alertMinimumTickets = UIAlertController(title: "Atención", message: "Tienes que comprar al menos una entrada", preferredStyle: .alert)
-            alertMinimumTickets.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alertMinimumTickets, animated: true)
+            let alert = UIAlertController(title: "Atención", message: "Tienes que comprar al menos una entrada", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
         } else {
-            MisEntradasTVC.SaveTicket(name: textname!, city: city!, date: date!, image: image!)
+            MisEntradasTVC.SaveTicket(name: textname!, city: city!, date: date!, image: image!, cantidad: numEntradas.text!)
+            
             saveData()
             
             let alert = UIAlertController(title: "Enhorabuena", message: "La compra se ha realizado satisfactoriamente", preferredStyle: .alert)
